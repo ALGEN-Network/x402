@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 const address = process.env.RESOURCE_WALLET_ADDRESS as Address;
 const network = process.env.NETWORK as Network;
 const facilitatorUrl = process.env.NEXT_PUBLIC_FACILITATOR_URL as Resource;
-const cdpClientKey = process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY;
+// const cdpClientKey = process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY;
 
 // List of blocked countries and regions
 const BLOCKED_COUNTRIES = [
@@ -34,12 +34,12 @@ const x402PaymentMiddleware = paymentMiddleware(
   {
     url: facilitatorUrl,
   },
-  {
-    cdpClientKey,
-    appLogo: "/logos/x402-examples.png",
-    appName: "x402 Demo",
-    sessionTokenEndpoint: "/api/x402/session-token",
-  },
+  // {
+  //   cdpClientKey,
+  //   appLogo: "/logos/x402-examples.png",
+  //   appName: "x402 Demo",
+  //   sessionTokenEndpoint: "/api/x402/session-token",
+  // },
 );
 
 const geolocationMiddleware = async (req: NextRequest) => {

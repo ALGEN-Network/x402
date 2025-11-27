@@ -20,6 +20,7 @@ import { Spinner } from "./Spinner";
 import { useOnrampSessionToken } from "./useOnrampSessionToken";
 import { ensureValidAmount } from "./utils";
 import { getNetworkDisplayName, isTestnetNetwork } from "./paywallUtils";
+import { algenL2Testnet } from "../../types/shared/custom-chains";
 
 type EvmPaywallProps = {
   paymentRequirement: PaymentRequirements;
@@ -53,7 +54,7 @@ export function EvmPaywall({ paymentRequirement, onSuccessfulResponse }: EvmPayw
       : Number(paymentRequirement.maxAmountRequired ?? 0) / 1_000_000;
 
   const network = paymentRequirement.network as Network;
-  const paymentChain = network === "base-sepolia" ? baseSepolia : base;
+  const paymentChain = network === "algenL2-testnet" ? algenL2Testnet : base; 
   const chainId = paymentChain.id;
   const chainName = getNetworkDisplayName(network);
   const testnet = isTestnetNetwork(network);
@@ -78,6 +79,7 @@ export function EvmPaywall({ paymentRequirement, onSuccessfulResponse }: EvmPayw
   }, [address, publicClient]);
 
   const handleSwitchChain = useCallback(async () => {
+    console.log("which chain is now: ", connectedChainId)
     if (isCorrectChain) {
       return;
     }
@@ -140,11 +142,11 @@ export function EvmPaywall({ paymentRequirement, onSuccessfulResponse }: EvmPayw
     setIsPaying(true);
 
     try {
-      setStatus("Checking USDC balance...");
+      setStatus("Checking USDV balance...");
       const balance = await getUSDCBalance(publicClient, address);
 
       if (balance === 0n) {
-        throw new Error(`Insufficient balance. Make sure you have USDC on ${chainName}`);
+        throw new Error(`Insufficient balance. Make sure you have USDV on ${chainName}`);
       }
 
       setStatus("Creating payment signature...");
@@ -246,12 +248,12 @@ export function EvmPaywall({ paymentRequirement, onSuccessfulResponse }: EvmPayw
         <h1 className="title">Payment Required</h1>
         <p>
           {paymentRequirement.description && `${paymentRequirement.description}.`} To access this
-          content, please pay ${amount} {chainName} USDC.
+          content, please pay ${amount} {chainName} USDV.
         </p>
         {testnet && (
           <p className="instructions">
-            Need {chainName} USDC?{" "}
-            <a href="https://faucet.circle.com/" target="_blank" rel="noopener noreferrer">
+            Need {chainName} USDV?{" "}
+            <a href="https://www.flowbridge.xyz/swap/" target="_blank" rel="noopener noreferrer">
               Get some <u>here</u>.
             </a>
           </p>
@@ -282,14 +284,14 @@ export function EvmPaywall({ paymentRequirement, onSuccessfulResponse }: EvmPayw
                 <span className="payment-value">
                   <button className="balance-button" onClick={() => setHideBalance(prev => !prev)}>
                     {formattedUsdcBalance && !hideBalance
-                      ? `$${formattedUsdcBalance} USDC`
-                      : "••••• USDC"}
+                      ? `$${formattedUsdcBalance} USDV`
+                      : "••••• USDV"}
                   </button>
                 </span>
               </div>
               <div className="payment-row">
                 <span className="payment-label">Amount:</span>
-                <span className="payment-value">${amount} USDC</span>
+                <span className="payment-value">${amount} USDV</span>
               </div>
               <div className="payment-row">
                 <span className="payment-label">Network:</span>
@@ -302,7 +304,7 @@ export function EvmPaywall({ paymentRequirement, onSuccessfulResponse }: EvmPayw
                 {showOnramp && (
                   <FundButton
                     fundingUrl={onrampBuyUrl}
-                    text="Get more USDC"
+                    text="Get more USDV"
                     hideIcon
                     className="button button-positive"
                   />

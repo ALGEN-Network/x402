@@ -2,7 +2,7 @@ import { selectPaymentRequirements } from "../../client";
 import type { PaymentRequirements } from "../../types/verify";
 import { Network, SupportedEVMNetworks, SupportedSVMNetworks } from "../../types/shared";
 
-const EVM_TESTNETS = new Set<Network>(["base-sepolia"]);
+const EVM_TESTNETS = new Set<Network>(["base-sepolia", "algenL2-testnet"]);
 const SVM_TESTNETS = new Set<Network>(["solana-devnet"]);
 
 /**
