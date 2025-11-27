@@ -5,10 +5,10 @@
   "type": "module",
   "packageManager": "pnpm@10.7.0",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3402",
     "build": "next build",
     "build:vercel": "cd .. && pnpm install && cd site && pnpm -r --filter=site... run build",
-    "start": "next start",
+    "start": "next start -p 3402",
     "format": "prettier -c .prettierrc --write \"**/*.{ts,js,cjs,json,md}\"",
     "format:check": "prettier -c .prettierrc --check \"**/*.{ts,js,cjs,json,md}\"",
     "lint": "eslint . --ext .ts --fix",
