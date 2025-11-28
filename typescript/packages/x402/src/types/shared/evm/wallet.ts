@@ -239,7 +239,7 @@ export function getChainFromNetwork(network: string | undefined): Chain {
       return algenL2Testnet;
     case "mesherX":
       return mesherX;
-    case "mesherXTestnet":
+    case "mesherX-testnet":
       return mesherXTestnet;
     default:
       throw new Error(`Unsupported network: ${network}`);
