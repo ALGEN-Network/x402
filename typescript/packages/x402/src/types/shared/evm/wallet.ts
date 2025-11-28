@@ -27,7 +27,7 @@ import {
   story,
   eduChain,
 } from "viem/chains";
-import { skaleBaseSepolia, algenL2Testnet } from "../custom-chains";
+import { skaleBaseSepolia, algenL2Testnet, mesherX, mesherXTestnet } from "../custom-chains";
 import { privateKeyToAccount } from "viem/accounts";
 import { Hex } from "viem";
 import { eip712WalletActions } from "viem/zksync";
@@ -237,6 +237,10 @@ export function getChainFromNetwork(network: string | undefined): Chain {
       return skaleBaseSepolia;
     case "algenL2-testnet":
       return algenL2Testnet;
+    case "mesherX":
+      return mesherX;
+    case "mesherXTestnet":
+      return mesherXTestnet;
     default:
       throw new Error(`Unsupported network: ${network}`);
   }

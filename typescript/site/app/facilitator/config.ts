@@ -7,4 +7,6 @@ export const ALLOWED_NETWORKS: Network[] | string[] = [
   "eip155:84532",
   "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1",
   "algenL2-testnet",
+  "mesherX",
+  "mesherX-testnet",
 ];

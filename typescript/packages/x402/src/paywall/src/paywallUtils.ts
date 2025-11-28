@@ -86,6 +86,10 @@ export function getNetworkDisplayName(network: Network): string {
       return "Solana";
     case "solana-devnet":
       return "Solana Devnet";
+    case "mesherX":
+      return "Mesher X"
+    case "mesherX-testnet":
+      return "Mesher X Testnet"
     default:
       return network;
   }

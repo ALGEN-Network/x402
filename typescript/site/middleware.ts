@@ -28,7 +28,7 @@ const x402PaymentMiddleware = paymentMiddleware(
       price: "$0.01",
       config: {
         description: "Access to protected content",
-        resource: `https://${domain}/protected`,
+        resource: `http://${domain}/protected`,
       },
       network,
     },

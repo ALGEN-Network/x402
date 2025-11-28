@@ -20,7 +20,7 @@ import { Spinner } from "./Spinner";
 import { useOnrampSessionToken } from "./useOnrampSessionToken";
 import { ensureValidAmount } from "./utils";
 import { getNetworkDisplayName, isTestnetNetwork } from "./paywallUtils";
-import { algenL2Testnet } from "../../types/shared/custom-chains";
+import { mesherX, mesherXTestnet } from "../../types/shared/custom-chains";
 
 type EvmPaywallProps = {
   paymentRequirement: PaymentRequirements;
@@ -54,7 +54,7 @@ export function EvmPaywall({ paymentRequirement, onSuccessfulResponse }: EvmPayw
       : Number(paymentRequirement.maxAmountRequired ?? 0) / 1_000_000;
 
   const network = paymentRequirement.network as Network;
-  const paymentChain = network === "algenL2-testnet" ? algenL2Testnet : base; 
+  const paymentChain = network === "mesherX-testnet" ? mesherXTestnet : mesherX; 
   const chainId = paymentChain.id;
   const chainName = getNetworkDisplayName(network);
   const testnet = isTestnetNetwork(network);
