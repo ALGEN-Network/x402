@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 const address = process.env.RESOURCE_WALLET_ADDRESS as Address;
 const network = process.env.NETWORK as Network;
 const facilitatorUrl = process.env.NEXT_PUBLIC_FACILITATOR_URL as Resource;
+const domain = process.env.NEXT_PUBLIC_DOMAIN as string;
 // const cdpClientKey = process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY;
 
 // List of blocked countries and regions
@@ -27,6 +28,7 @@ const x402PaymentMiddleware = paymentMiddleware(
       price: "$0.01",
       config: {
         description: "Access to protected content",
+        resource: `https://${domain}/protected`,
       },
       network,
     },
