@@ -160,7 +160,8 @@ export function EvmPaywall({ paymentRequirement, onSuccessfulResponse }: EvmPayw
       const paymentHeader: string = exact.evm.encodePayment(initialPayment);
 
       setStatus("Requesting content with payment...");
-      const response = await fetch(x402.currentUrl, {
+      console.log("current url: ", x402.currentUrl)
+      const response = await fetch(paymentRequirement.resource, {
         headers: {
           "X-PAYMENT": paymentHeader,
           "Access-Control-Expose-Headers": "X-PAYMENT-RESPONSE",
@@ -188,7 +189,7 @@ export function EvmPaywall({ paymentRequirement, onSuccessfulResponse }: EvmPayw
 
           retryPayment.x402Version = errorData.x402Version;
           const retryHeader = exact.evm.encodePayment(retryPayment);
-          const retryResponse = await fetch(x402.currentUrl, {
+          const retryResponse = await fetch(paymentRequirement.resource, {
             headers: {
               "X-PAYMENT": retryHeader,
               "Access-Control-Expose-Headers": "X-PAYMENT-RESPONSE",

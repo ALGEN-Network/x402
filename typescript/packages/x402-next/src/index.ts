@@ -105,6 +105,7 @@ export function paymentMiddleware(
     const resourceUrl =
       resource || (`${request.nextUrl.protocol}//${request.nextUrl.host}${pathname}` as Resource);
 
+    console.log("resourceUrl: ", resourceUrl);
     // Build payment requirements
     const paymentRequirements = await buildPaymentRequirements(
       payTo,
