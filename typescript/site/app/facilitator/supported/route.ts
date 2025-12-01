@@ -11,20 +11,12 @@ export async function GET() {
       {
         x402Version: 1,
         scheme: "exact",
-        network: "algenL2-testnet",
+        network: "mesherX-testnet",
       },
       {
         x402Version: 1,
         scheme: "exact",
-        network: "base-sepolia",
-      },
-      {
-        x402Version: 1,
-        scheme: "exact",
-        network: "solana-devnet",
-        extra: {
-          feePayer: process.env.SOLANA_ADDRESS,
-        },
+        network: "mesherX",
       },
     ],
   };
